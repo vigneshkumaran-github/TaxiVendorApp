@@ -6,6 +6,7 @@ import {RFValue} from 'react-native-responsive-fontsize';
 import {SvgXml} from 'react-native-svg';
 import { camersvg } from '../../Resources/Svg/Auth';
 import PageHeader from '../../CustomComponents/PageHeader';
+import { locatesvg, ticksvg } from '../../Resources/Svg/Notification';
 
 const Notifications = () => {
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
@@ -17,7 +18,7 @@ const Notifications = () => {
         {data?.map((item, index) => (
           <View key={index} style={styles.card}>
             <View style={styles.circle}>
-              <SvgXml xml={camersvg} width={responsiveHeight(3)} height={responsiveHeight(3)} />
+              <SvgXml xml={locatesvg} width={responsiveHeight(3)} height={responsiveHeight(3)} />
             </View>
             <View style={{width: responsiveWidth(65), height: responsiveHeight(7.5), justifyContent: 'space-between', marginStart: responsiveWidth(2)}}>
               <Text style={styles.text1}>Trip Completed</Text>

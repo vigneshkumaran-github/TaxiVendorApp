@@ -9,8 +9,10 @@ import ResponsiveImage from 'react-native-responsive-image';
 import ToggleSwitch from 'toggle-switch-react-native';
 import {searchsvg, starsvg} from '../../../Resources/Svg/History';
 import BlueButton from '../../../CustomComponents/BlueButton';
+import { useNavigation } from '@react-navigation/native';
 
 const DriverList = () => {
+  const navigation=useNavigation()
   const [searchText, setSearchText] = useState('');
   const [toggle, setToggle] = useState(false);
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
@@ -41,7 +43,7 @@ const DriverList = () => {
           data={data}
           keyExtractor={item => item}
           renderItem={({item, index}) => (
-            <TouchableOpacity key={index} style={styles.card}>
+            <TouchableOpacity key={index} style={styles.card} onPress={()=>{navigation.navigate('DriverDetails')}}>
               <ResponsiveImage style={styles.image} borderRadius={responsiveHeight(7) / 2} source={{uri: 'https://gossipgist.com/uploads/3/cristiano-ronaldo.jpg'}} />
               <View style={{height: responsiveHeight(6), justifyContent: 'space-evenly', width: responsiveWidth(50), marginStart: responsiveWidth(2)}}>
                 <Text style={styles.text1}>Jude Bellingham</Text>
@@ -64,7 +66,7 @@ const DriverList = () => {
         />
       </View>
 
-      <BlueButton name={'ADD DRIVER'} />
+      <BlueButton name={'ADD DRIVER'} onPress={()=>{navigation.navigate('AddDriver')}} />
     </View>
   );
 };

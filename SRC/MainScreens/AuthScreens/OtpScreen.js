@@ -60,7 +60,7 @@ const OtpScreen = () => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            marginTop: responsiveHeight(1),
+            marginTop: responsiveHeight(2),
           }}>
           <TouchableOpacity style={{alignSelf: 'center'}}>
             <Text style={[styles.smalltext, {color: colors.Textcolor}]}>
@@ -79,7 +79,7 @@ const OtpScreen = () => {
           </View>
         </View>
 
-        <BlueButton name={"VERIFY"} onPress={()=>{navigation.navigate('Home')}} />
+        <BlueButton name={"VERIFY"} style={{marginTop:responsiveHeight(2)}} onPress={()=>{navigation.navigate('Home')}} />
       </View>
     </View>
   );

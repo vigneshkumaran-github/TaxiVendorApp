@@ -8,6 +8,7 @@ import {colors, fontWeight, fontfamily} from '../../../Constants/DesignConstants
 import {RFValue} from 'react-native-responsive-fontsize';
 import {SvgXml} from 'react-native-svg';
 import {carsvg} from '../../../Resources/Svg/Home';
+import ResponsiveImage from 'react-native-responsive-image';
 
 const StatusCard = () => {
   return (
@@ -21,12 +22,7 @@ const StatusCard = () => {
           justifyContent: 'space-between',
         }}>
         <View style={styles.btn}>
-          <SvgXml
-            xml={carsvg}
-            width={responsiveWidth(15)}
-            height={responsiveHeight(4)}
-            style={{alignSelf: 'flex-end'}}
-          />
+           <ResponsiveImage style={styles.carImage} source={require('../../../Resources/Images/yellowcar.png')} resizeMode={'contain'} />
           <View
             style={{
               height: responsiveHeight(7),
@@ -42,12 +38,7 @@ const StatusCard = () => {
         </View>
 
         <View style={styles.btn}>
-          <SvgXml
-            xml={carsvg}
-            width={responsiveWidth(15)}
-            height={responsiveHeight(4)}
-            style={{alignSelf: 'flex-end'}}
-          />
+        <ResponsiveImage style={styles.carImage} source={require('../../../Resources/Images/yellowcar.png')} resizeMode={'contain'} />
           <View
             style={{
               height: responsiveHeight(7),
@@ -112,5 +103,10 @@ const styles = StyleSheet.create({
     fontFamily: fontfamily.fontSemiBold,
     fontSize: RFValue(25),
     fontWeight: fontWeight.medium,
+  },
+  carImage: {
+    width: responsiveWidth(15),
+    height: responsiveHeight(4),
+    alignSelf: 'flex-end',
   },
 });

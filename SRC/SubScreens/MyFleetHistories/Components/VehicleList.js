@@ -9,8 +9,10 @@ import ResponsiveImage from 'react-native-responsive-image';
 import ToggleSwitch from 'toggle-switch-react-native';
 import {searchsvg, starsvg, vehiclesvg} from '../../../Resources/Svg/History';
 import BlueButton from '../../../CustomComponents/BlueButton';
+import {useNavigation} from '@react-navigation/native';
 
 const VehicleList = () => {
+  const navigation = useNavigation();
   const [searchText, setSearchText] = useState('');
   const [toggle, setToggle] = useState(false);
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
@@ -21,7 +23,7 @@ const VehicleList = () => {
         <SvgXml xml={searchsvg} width={responsiveWidth(7)} height={responsiveHeight(4)} />
         <TextInput
           style={[styles.input]}
-          placeholder={'Search for drivers'}
+          placeholder={'Search for Vehicles'}
           placeholderTextColor={colors.Textcolor}
           inputMode="text"
           value={searchText}
@@ -32,7 +34,7 @@ const VehicleList = () => {
         />
       </TouchableOpacity>
       <View style={styles.totalView}>
-        <Text style={styles.text1}>Total Drivers</Text>
+        <Text style={styles.text1}>Total Vehicles</Text>
         <Text style={styles.text1}>200</Text>
       </View>
       <View style={{height: responsiveHeight(59)}}>
@@ -40,7 +42,12 @@ const VehicleList = () => {
           data={data}
           keyExtractor={item => item}
           renderItem={({item, index}) => (
-            <TouchableOpacity key={index} style={styles.card}>
+            <TouchableOpacity
+              key={index}
+              style={styles.card}
+              onPress={() => {
+                navigation.navigate('VehicleDetails');
+              }}>
               <SvgXml xml={vehiclesvg} width={responsiveWidth(13)} height={responsiveHeight(10)} />
               {/* <ResponsiveImage style={styles.image} borderRadius={responsiveHeight(7) / 2} source={{uri: 'https://gossipgist.com/uploads/3/cristiano-ronaldo.jpg'}} /> */}
               <View style={{height: responsiveHeight(6), justifyContent: 'space-evenly', width: responsiveWidth(50), marginStart: responsiveWidth(2)}}>
@@ -60,7 +67,12 @@ const VehicleList = () => {
           )}
         />
       </View>
-      <BlueButton name={'ADD VEHICLE'} />
+      <BlueButton
+        name={'ADD VEHICLE'}
+        onPress={() => {
+          navigation.navigate('AddVehicle');
+        }}
+      />
     </View>
   );
 };

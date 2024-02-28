@@ -10,22 +10,19 @@ import FareDetails from '../../../CustomComponents/FareDetails';
 import ResponsiveImage from 'react-native-responsive-image';
 
 const EarningsCard = ({selected, setSelected, item, index}) => {
-
-
-    const onSelect=()=>{
-        if(selected===index){
-            setSelected('')
-        }
-        else{
-            setSelected(index);
-        }
+  const onSelect = () => {
+    if (selected === index) {
+      setSelected('');
+    } else {
+      setSelected(index);
     }
+  };
 
   return (
     <TouchableOpacity
       style={styles.card}
       onPress={() => {
-       onSelect()
+        onSelect();
       }}>
       {/* Top View */}
       <View style={styles.topView}>
@@ -39,7 +36,7 @@ const EarningsCard = ({selected, setSelected, item, index}) => {
           <Text style={styles.text1}>Hyundai Verna</Text>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <SvgXml xml={steeringsvg} width={responsiveWidth(5)} height={responsiveHeight(4)} />
-            <Text style={styles.text2}> Luka Modric</Text>
+            <Text style={styles.text2}>Luka Modric</Text>
           </View>
         </View>
 
@@ -78,7 +75,11 @@ const EarningsCard = ({selected, setSelected, item, index}) => {
         </View>
       )}
 
-      <TouchableOpacity style={styles.bottomView} onPress={()=>{onSelect()}}>
+      <TouchableOpacity
+        style={styles.bottomView}
+        onPress={() => {
+          onSelect();
+        }}>
         <SvgXml xml={dropdownsvg} height={responsiveHeight(3)} width={responsiveWidth(5)} />
       </TouchableOpacity>
     </TouchableOpacity>

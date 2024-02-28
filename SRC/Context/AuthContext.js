@@ -9,6 +9,7 @@ export const AuthProvider = ({children}) => {
   const [netConnected,setNetConnected] = useState(null)
   let a = 'HELLO';
   const [UserToken, setUserToken] = useState(null);
+  const [logoutModal,setLogoutModal] = useState(false)
 
   const checkUser = async () => {
     setIsLoading(true);
@@ -43,6 +44,7 @@ export const AuthProvider = ({children}) => {
 
   let contextValue = {
     a,
+    logoutModal,setLogoutModal
   };
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

@@ -1,20 +1,20 @@
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
-import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Linking, Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {responsiveHeight, responsiveWidth} from 'react-native-responsive-dimensions';
 
 import {RFValue} from 'react-native-responsive-fontsize';
-import React, {useCallback, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useContext, useMemo, useRef, useState} from 'react';
 import ResponsiveImage from 'react-native-responsive-image';
 import {SvgXml} from 'react-native-svg';
-import {useNavigation} from '@react-navigation/native';
-import { namesvg } from '../../Resources/Svg/Auth';
-import { colors, fontWeight, fontfamily } from '../../Constants/DesignConstants';
-import { bellsvg, contactsvg, historysvg, logoutsvg, rupeesvg } from '../../Resources/Svg/Navigation';
+import {DrawerActions, useNavigation} from '@react-navigation/native';
+import {namesvg} from '../../Resources/Svg/Auth';
+import {colors, fontWeight, fontfamily} from '../../Constants/DesignConstants';
+import {bellsvg, contactsvg, historysvg, logoutsvg, rupeesvg} from '../../Resources/Svg/Navigation';
+import { AuthContext } from '../../Context/AuthContext';
 
 const CustomDrawer = props => {
   const navigation = useNavigation();
-
-
+  const {logoutModal,setLogoutModal} = useContext(AuthContext)
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView {...props} style={{backgroundColor: colors.primarycolor, width: responsiveWidth(80)}}>
@@ -47,7 +47,7 @@ const CustomDrawer = props => {
                 <Text style={styles.text1} numberOfLines={2} ellipsizeMode="tail">
                   Crsitiano Ronaldo
                 </Text>
-                <Text style={styles.text2}>+91 9876543210</Text>
+                <Text style={styles.text2}>UY7689TR</Text>
               </View>
               <Text style={styles.text2}>Edit Profile</Text>
             </View>
@@ -57,41 +57,34 @@ const CustomDrawer = props => {
         <View style={{height: responsiveHeight(80), backgroundColor: colors.white}}>
           <DrawerItem
             icon={({color, size}) => <SvgXml xml={bellsvg} width={responsiveWidth(7)} height={responsiveWidth(7)} />}
-            label={() => <Text style={styles.itemtext}>Notification</Text>}
+            label={() => <Text style={styles.itemtext}>Notifications</Text>}
             onPress={() => navigation.navigate('Notifications')}
           />
-           <DrawerItem
+          <DrawerItem
             icon={({color, size}) => <SvgXml xml={rupeesvg} width={responsiveWidth(7)} height={responsiveWidth(7)} />}
             label={() => <Text style={styles.itemtext}>Ride Earnings</Text>}
             onPress={() => navigation.navigate('RideEarnings')}
           />
-           <DrawerItem
+          <DrawerItem
             icon={({color, size}) => <SvgXml xml={historysvg} width={responsiveWidth(7)} height={responsiveWidth(7)} />}
             label={() => <Text style={styles.itemtext}>My Fleet & Histories</Text>}
             onPress={() => navigation.navigate('MyFleetHistory')}
           />
-           <DrawerItem
+          <DrawerItem
             icon={({color, size}) => <SvgXml xml={contactsvg} width={responsiveWidth(7)} height={responsiveWidth(7)} />}
             label={() => <Text style={styles.itemtext}>Contact & Support</Text>}
             onPress={() => navigation.navigate('Contact')}
           />
-           <DrawerItem
+          <DrawerItem
             icon={({color, size}) => <SvgXml xml={logoutsvg} width={responsiveWidth(7)} height={responsiveWidth(7)} />}
             label={() => <Text style={styles.itemtext}>Log Out</Text>}
-            onPress={() => navigation.navigate('MyTrips')}
+            onPress={() => {
+              navigation.dispatch(DrawerActions.closeDrawer());
+              setLogoutModal(true)
+            }}
           />
         </View>
-        {/* {open && (
-          <BottomSheet
-            ref={bottomSheetRef}
-            index={1}
-            // enableHandlePanningGesture={false}
-            enableContentPanningGesture={false}
-            enablePanDownToClose
-            snapPoints={snapPoints}
-            onClose={()=>setOpen(false)}
-            onDismiss={() => setOpen(false)}></BottomSheet>
-        )} */}
+       
       </DrawerContentScrollView>
     </View>
   );
@@ -133,4 +126,9 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(2),
     alignSelf: 'center',
   },
+  centeredView:{
+    width:responsiveWidth(100),
+    height:responsiveHeight(100),
+    backgroundColor:'transparent'
+  }
 });

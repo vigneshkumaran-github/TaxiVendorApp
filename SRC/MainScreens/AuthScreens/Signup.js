@@ -14,7 +14,7 @@ import {
   responsiveWidth,
 } from 'react-native-responsive-dimensions';
 import {RFValue} from 'react-native-responsive-fontsize';
-import {addressvg, calendarsvg, gendersvg, languagesvg, namesvg} from '../../Resources/Svg/Auth';
+import {addressvg, calendarsvg, countrysvg, gendersvg, languagesvg, namesvg} from '../../Resources/Svg/Auth';
 import {SvgXml} from 'react-native-svg';
 import {SelectList} from 'react-native-dropdown-select-list';
 import BlueButton from '../../CustomComponents/BlueButton';
@@ -105,6 +105,7 @@ const Signup = () => {
             setSelected={val => setGender(val)}
             data={genderData}
             save="value"
+            placeholder='Gender'
             search={false}
             maxHeight={responsiveHeight(15)}
             boxStyles={[
@@ -130,7 +131,7 @@ const Signup = () => {
             }}
           />
           <SvgXml
-            xml={calendarsvg}
+            xml={gendersvg}
             width={responsiveWidth(8)}
             height={responsiveWidth(8)}
             style={{
@@ -147,6 +148,7 @@ const Signup = () => {
             data={countryData}
             save="value"
             search={false}
+            placeholder='Nationality'
             maxHeight={responsiveHeight(15)}
             boxStyles={[
               styles.inputContainer,
@@ -171,7 +173,7 @@ const Signup = () => {
             }}
           />
           <SvgXml
-            xml={calendarsvg}
+            xml={countrysvg}
             width={responsiveWidth(8)}
             height={responsiveWidth(8)}
             style={{
@@ -209,6 +211,7 @@ const Signup = () => {
             data={countryData}
             save="value"
             search={false}
+            placeholder='Preferred Language'
             maxHeight={responsiveHeight(15)}
             boxStyles={[
               styles.inputContainer,
